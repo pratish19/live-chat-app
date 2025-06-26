@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import axios from "axios";
 import './App.css';
 
-const BACKEND_URL = "https://textnest.onrender.com"; //backend url
+const BACKEND_URL = "https://textnest.onrender.com"; // ← Render backend URL
 const socket = io(BACKEND_URL);
 
 function App() {
