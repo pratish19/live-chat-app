@@ -3,7 +3,8 @@ import io from "socket.io-client";
 import axios from "axios";
 import './App.css';
 
-const socket = io("http://localhost:5000");
+const BACKEND_URL = "https://textnest.onrender.com"; //backend url
+const socket = io(BACKEND_URL);
 
 function App() {
   const [username, setUsername] = useState("");
@@ -18,7 +19,7 @@ function App() {
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
   useEffect(() => {
-    axios.get("http://localhost:5000/messages").then((res) => {
+    axios.get(`${BACKEND_URL}/messages`).then((res) => {
       setMessages(res.data);
     });
 
@@ -59,7 +60,7 @@ function App() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/login", { username: inputName });
+      const res = await axios.post(`${BACKEND_URL}/login`, { username: inputName });
       setUsername(res.data.username);
       socket.emit("join", inputName);
     } catch {
